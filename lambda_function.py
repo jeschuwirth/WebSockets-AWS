@@ -35,6 +35,6 @@ def lambda_handler(event, context):
 
     else:
         pass
-        # response['statusCode'] = routes(route_key, table, event, connection_id, apig_management_client)
+        # response['statusCode'] = routes(route_key, event, connection_id, apig_management_client)
 
     return response

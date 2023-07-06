@@ -8,7 +8,7 @@ def handle_connect(event, connection_id, apig_management_client):
     room_id = event.get('queryStringParameters', {'room': "aaaa"}).get("room")
 
     try:
-        join_or_create_player(connection_id, room_id, user_name)
+        create_or_activate_player(connection_id, room_id, user_name)
         create_connection(connection_id, room_id, user_name)
 
     except ClientError:
@@ -26,7 +26,7 @@ def create_connection(connection_id, room_id, user_name):
     })
 
 
-def join_or_create_player(connection_id, room_id, user_name):
+def create_or_activate_player(connection_id, room_id, user_name):
     players_table = get_table('PLAYERS_TABLE')
     response = players_table.get_item(Key = {"room_id": room_id, "user_name": user_name})
 
@@ -48,6 +48,7 @@ def join_or_create_player(connection_id, room_id, user_name):
         'room_id': room_id, 
         'user_name': user_name,
         'connection_id': connection_id,
+        'is_host': False,
         'points': 0,
         'answer': None
     })

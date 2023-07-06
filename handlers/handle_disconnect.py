@@ -1,6 +1,7 @@
 from botocore.exceptions import ClientError
 
 from auxiliary_functions.get_table import get_table
+from auxiliary_functions.delete_room_if_empty import delete_room_if_empty
 
 def handle_disconnect(event, connection_id, apig_management_client):
     status_code = 200
@@ -8,6 +9,7 @@ def handle_disconnect(event, connection_id, apig_management_client):
     try:
         user_name, room_id = delete_connection(connection_id)
         deactivate_player(room_id, user_name)
+        delete_room_if_empty(room_id)
 
     except ClientError:
         status_code = 503
