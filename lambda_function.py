@@ -3,7 +3,7 @@ import boto3
 from handlers.routes import routes
 from handlers.handle_connect import handle_connect
 from handlers.handle_disconnect import handle_disconnect
-from auxiliary_functions.update_connected_users import update_connected_users
+# from auxiliary_functions.update_connected_users import update_connected_users
 
 
 def lambda_handler(event, context):
@@ -33,8 +33,7 @@ def lambda_handler(event, context):
         response['statusCode'] = handle_disconnect(event, connection_id, apig_management_client)
         # update_connected_users(table, room_id, apig_management_client)
 
-    else:
-        pass
-        # response['statusCode'] = routes(route_key, event, connection_id, apig_management_client)
+    # else:
+    #     response['statusCode'] = routes(route_key, event, connection_id, apig_management_client)
 
     return response
