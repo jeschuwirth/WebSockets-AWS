@@ -48,7 +48,5 @@ def create_or_activate_player(connection_id, room_id, user_name):
         'room_id': room_id, 
         'user_name': user_name,
         'connection_id': connection_id,
-        'is_host': False,
-        'points': 0,
-        'answer': None
+        'is_host': False
     })
